@@ -56,12 +56,12 @@ const getMetrics = (state: IState) => {
 export default () => {
   return (
     <Provider value={client}>
-      <MetricSelect />
+      <MetricDropdown />
     </Provider>
   );
 };
 
-const MetricSelect = () => {
+const MetricDropdown = () => {
   const dispatch = useDispatch();
   const { metrics, activeMetrics } = useSelector(getMetrics);
 

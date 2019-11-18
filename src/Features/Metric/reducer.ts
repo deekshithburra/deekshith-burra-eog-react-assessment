@@ -6,12 +6,14 @@ export type ApiErrorAction = {
 
 interface MetricInitialState {
   metrics: string[],
-  activeMetrics: string[]
+  activeMetrics: string[],
+  measurements: any
 }
 
 const initialState: MetricInitialState = {
   metrics: [],
-  activeMetrics: []
+  activeMetrics: ["flareTemp"],
+  measurements: []
 };
 
 const slice = createSlice({
@@ -24,6 +26,9 @@ const slice = createSlice({
     metricApiErrorReceived: (state, action: PayloadAction<ApiErrorAction>) => state,
     metricSelectionChanged: (state, action: PayloadAction<string[]>) => {
       state.activeMetrics = action.payload;
+    },
+    measurementsReceived: (state, action: PayloadAction<any>) => {
+      state.measurements = action.payload;
     }
   },
 });
