@@ -7,13 +7,15 @@ export type ApiErrorAction = {
 interface MetricInitialState {
   metrics: string[],
   activeMetrics: string[],
-  measurements: any
+  measurements: any,
+  heartBeat: any
 }
 
 const initialState: MetricInitialState = {
   metrics: [],
-  activeMetrics: ["flareTemp"],
-  measurements: []
+  activeMetrics: [],
+  measurements: [],
+  heartBeat: null
 };
 
 const slice = createSlice({
@@ -22,6 +24,9 @@ const slice = createSlice({
   reducers: {
     metricDataRecevied: (state, action: PayloadAction<string[]>) => {
       state.metrics = action.payload;
+    },
+    heartBeatRecevied: (state, action: PayloadAction<any>) => {
+      state.heartBeat = action.payload;
     },
     metricApiErrorReceived: (state, action: PayloadAction<ApiErrorAction>) => state,
     metricSelectionChanged: (state, action: PayloadAction<string[]>) => {
